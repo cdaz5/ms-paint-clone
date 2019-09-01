@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" type="text/css" href="index.css" media="screen" />
+    <meta charset="UTF-8" />
+    <title>Paint Clone</title>
+  </head>
+  <body>
+    <canvas id="draw" width="800" height="800"></canvas>
+    <div id="utils">
+      <div class="picker-content">
+        <input type="color" name="colorPicker" value="#1e90ff" />
+        <div>Pick your poison</div>
+      </div>
+      <div class="circles-content">
+        <div class="circles-container">
+          <div class="circle ten" data-width="10"></div>
+          <div class="circle two-five" data-width="25"></div>
+          <div class="circle fifty" data-width="50"></div>
+        </div>
+        <div>Width preference</div>
+      </div>
+      <div class="funk-content">
+        <label for="rainbowFunk" class="label">
+          wana get
+          <span class="funk-container"
+            ><a href="" class="funk">Fabulous?</a></span
+          >
+          <input id="rainbowFunk" type="checkbox" name="rainbowFunk" />
+        </label>
+        <div>(yes, yes you do)</div>
+      </div>
+    </div>
+    <script type="text/javascript" src="index.js"></script>
+  </body>
+</html>

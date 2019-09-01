@@ -1,0 +1,109 @@
+html,
+body {
+  margin: 0;
+  font-family: monospace;
+  font-size: 16px;
+  height: 100vh;
+}
+
+@keyframes funk {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 25%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+#utils {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: transparent;
+  padding-bottom: 10px;
+}
+
+.picker-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.circles-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.circles-container {
+  display: flex;
+  align-items: center;
+}
+
+.circle {
+  margin: 0 10px;
+  background: #1e90ff;
+  border-radius: 100%;
+}
+
+.circle.selected {
+  border: 2px solid #000;
+}
+
+.circle.ten {
+  height: 10px;
+  width: 10px;
+}
+
+.circle.two-five {
+  height: 25px;
+  width: 25px;
+}
+
+.circle.fifty {
+  height: 50px;
+  width: 50px;
+}
+
+.funk-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.funk-content > div {
+  font-size: 12px;
+}
+
+.label .funk-container {
+  font-style: italic;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.funk {
+  background-image: repeating-linear-gradient(
+    45deg,
+    violet,
+    indigo,
+    blue,
+    green,
+    yellow,
+    orange,
+    red,
+    violet
+  );
+  text-align: center;
+  background-size: 800% 800%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 24px;
+  padding: 0 5px;
+  animation: funk 8s ease infinite;
+}

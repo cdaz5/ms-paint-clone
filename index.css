@@ -3,7 +3,6 @@ body {
   margin: 0;
   font-family: monospace;
   font-size: 16px;
-  height: 100vh;
 }
 
 @keyframes funk {
@@ -16,6 +15,10 @@ body {
   100% {
     background-position: 0% 50%;
   }
+}
+
+#burger-icon {
+  display: none;
 }
 
 #utils {
@@ -106,4 +109,46 @@ body {
   font-size: 24px;
   padding: 0 5px;
   animation: funk 8s ease infinite;
+}
+
+@media only screen and (max-width: 768px) {
+  html {
+    height: 100%;
+    overscroll-behavior: none;
+    overflow: hidden;
+  }
+  body {
+    height: 100%;
+    overscroll-behavior: none;
+    overflow: hidden;
+  }
+
+  #utils {
+    padding-top: 10px;
+    top: 0;
+    bottom: auto;
+  }
+}
+
+@media only screen and (max-width: 540px) {
+  #burger-icon {
+    display: flex;
+  }
+
+  #utils > div {
+    display: none;
+  }
+
+  #utils.responsive > div {
+    display: flex;
+    margin: 20px 0;
+  }
+
+  #utils.responsive {
+    background: #ecebef;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+  }
 }

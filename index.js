@@ -4,14 +4,17 @@ const ctx = canvas.getContext("2d");
 const circles = [...document.getElementsByClassName("circle")];
 const colorPicker = document.querySelector('input[name="colorPicker"]');
 const rainbowInput = document.querySelector('input[name="rainbowFunk"]');
+const burgerMenu = document.getElementById("burger-icon");
+const utils = document.getElementById("utils");
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+canvas.width = window.screen.width;
+canvas.height = window.screen.height;
 
 ctx.lineJoin = "round";
 ctx.lineCap = "round";
 ctx.lineWidth = 50;
 
+let burgerOpen = false;
 let isDrawing = false;
 let lastX = 0;
 let lastY = 0;
@@ -29,6 +32,12 @@ const toggleIsDrawing = bool => (isDrawing = bool);
 const toggleAndUpdate = drawing => event => {
   toggleIsDrawing(drawing);
   updateLastXandLastY(event);
+};
+
+const toggleAndUpdateMobile = drawing => event => {
+  toggleIsDrawing(drawing);
+  const { pageX: offsetX, pageY: offsetY } = event.touches[0];
+  updateLastXandLastY({ offsetX, offsetY });
 };
 
 const updateSelectedCircle = widthAttr => {
@@ -89,16 +98,36 @@ const updateCircleColor = hex => {
   });
 };
 
+const mobileDraw = e => {
+  if (!isDrawing) return;
+  const { pageX: offsetX, pageY: offsetY } = e.touches[0];
+  draw({ offsetX, offsetY });
+};
+
 const updateRainbowFunk = ({ target: { checked } }) => (rainbowFunk = checked);
+
+const toggleBurgerMenu = ({ target }) => {
+  burgerOpen = !burgerOpen;
+  if (burgerOpen) {
+    utils.classList.add("responsive");
+  } else {
+    utils.classList.remove("responsive");
+  }
+};
 
 canvas.addEventListener("mousemove", draw);
 canvas.addEventListener("mousedown", toggleAndUpdate(true));
 canvas.addEventListener("mouseup", toggleAndUpdate(false));
 canvas.addEventListener("mouseout", toggleAndUpdate(false));
+canvas.addEventListener("touchstart", toggleAndUpdateMobile(true), false);
+canvas.addEventListener("touchmove", mobileDraw, false);
+canvas.addEventListener("touchend", toggleAndUpdateMobile(false), false);
+canvas.addEventListener("touchcancel", toggleAndUpdateMobile(false), false);
 
 circles.forEach(circle => circle.addEventListener("click", handleCircleClick));
 colorPicker.addEventListener("change", setHue, false);
 rainbowInput.addEventListener("change", updateRainbowFunk);
+burgerMenu.addEventListener("click", toggleBurgerMenu);
 
 const hexToHSL = H => {
   // Convert hex to RGB first
